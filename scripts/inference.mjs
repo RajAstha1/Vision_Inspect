@@ -4,7 +4,8 @@ import { spawn } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1")), "..");
+import { fileURLToPath } from "node:url";
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const serviceDir = path.join(root, "inference");
 const venvPython = process.platform === "win32"
   ? path.join(serviceDir, ".venv", "Scripts", "python.exe")
